@@ -1,0 +1,6 @@
+---
+- hosts: webserver
+  user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
