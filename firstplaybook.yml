@@ -17,6 +17,6 @@
   # Task section
   tasks:
     - name: Install GIT on Web Server
-      action: yum name=git state=installed update_cache=true
+      action: yum name=git state=installed
     - name: Install telnet on Web Server
-      action: yum name=telnet state=installed update_chache=true
+      action: yum name=telnet state=installed 
