@@ -1,0 +1,29 @@
+--- # My first YAML playbook for Ansible
+# Target Section
+- hosts: webserver
+  user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  # Varibale section
+  vars:
+    playbook_version: 0.1b
+  vars_files:
+    - conf/copyright.yml
+    - conf/webdefaults.yml
+  vars_prompt:
+    - name: web_domain
+      prompt: Web Domain
+  # Task section
+  tasks:
+    - name: Install GIT on Web Server
+      action: yum name=git state=installed
+    - name: Install telnet on Web Server
+      action: yum name=telnet state=installed 
+    - name: Install apache on webserver
+      action: yum name=httpd state=installed
+      notify: Restart HTTPD
+  # Handler Section
+  handlers:
+    - name: Restart HTTPD
+      action: service name=httpd state=restarted

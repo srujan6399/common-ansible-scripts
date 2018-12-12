@@ -1,0 +1,9 @@
+---
+- hosts: webserver
+  vars:
+    playbook_version: 0.1b
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Install GIT on webservers
+      action: yum name=git state=installed update_cache=true
