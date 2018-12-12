@@ -26,4 +26,4 @@
   # Handler Section
   handlers:
     - name: Restart HTTPD
-      action: service name=httpd state=restart
+      action: service name=httpd state=restarted
