@@ -1,8 +1,7 @@
 ---
 - hosts: webserver
-  vars:
-    control_server: localhost
-    web_root: /var/www/html/
+  vars_file:
+    - vars.yml
   tasks:
     - name: Install GIT on webservers
-      action: yum name=git state=installed update_cache=trueSSS
+      action: yum name=git state=installed update_cache=true
