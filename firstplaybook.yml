@@ -14,4 +14,9 @@
   vars_prompt:
     - name: web_domain
       prompt: Web Domain
-      
+  # Task section
+  tasks:
+    - name: Install GIT on Web Server
+      action: yum name=git state=installed update_cache=true
+    - name: Install telnet on Web Server
+      action: yum name=telnet state=installed update_chache=true
