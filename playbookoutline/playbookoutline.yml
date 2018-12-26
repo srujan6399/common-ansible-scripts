@@ -5,11 +5,12 @@
   gather_facts: no
   tasks:
     - name: date/time stamp when playbook starts
-      raw: /usr/bin/date > /home/test/playbook_start.log
+      command: /usr/bin/date
+      register: timestamp_start
+    - debug: var=timestamp_start
     - name: install apache web server
       yum: pkg=httpd state=latest
-    - name: start web service
-      service: name=httpd state=restarted
+      notify: Start HTTPD
     - name: verify that the webservice is running
       command: systemctl status httpd
       register: result
@@ -17,6 +18,15 @@
     - name: install client software git
       yum: pkg=git state=latest
     - name: log all the packages installed on the system
-      raw: yum list installed | grep git > /home/test/installed.log
+      command: yum list installed | grep git
+      register: installed_result
+    - debug: var=installed_result
     - name: date/time stamp when playbook ends
-      raw: /usr/bin/date > /home/test/playbook_end.log
+      command: /usr/bin/date
+      register: timestamp_end
+    - debug: var=timestamp_end
+
+  handlers:
+    - name: Start HTTPD
+      service: name=httpd state=restarted
+    
