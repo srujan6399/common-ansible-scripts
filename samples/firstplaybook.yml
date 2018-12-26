@@ -16,8 +16,8 @@
       prompt: Web Domain
   # Task section
   tasks:
-    - name: Install GIT on Web Server
-      action: yum name=git state=installed
+    - name: Install {{ pkg_git }} on Web Server
+      action: yum name={{ pkg_git }} state=installed
     - name: Install telnet on Web Server
       action: yum name=telnet state=installed 
     - name: Install apache on webserver

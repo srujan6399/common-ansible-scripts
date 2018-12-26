@@ -1,3 +1,4 @@
 ---
 apache_version: 2.6
 apache_mod_req: ssl
+pkg_git: git
