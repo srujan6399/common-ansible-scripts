@@ -1,0 +1,9 @@
+--- # LOOKUP playbook Example
+- hosts: webserver
+  user: test
+  connection: ssh
+  become: yes
+  gather_facts: no
+  tasks:
+    - debug: msg="Lookup the super Hero for BRUCE WAYNE {{ lookup('csvfile', 'Bruce Wayne file=lookup.csv delimiter=, col=1 default=NOMATCH')}}"
+    
