@@ -1,0 +1,6 @@
+--- #Local Action playbook example
+- hosts: local
+  connection: local
+  tasks:
+    - name: install telnet client
+      yum: pkg=telnet state=present
