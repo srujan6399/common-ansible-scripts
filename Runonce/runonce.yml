@@ -1,0 +1,12 @@
+--- #Runonce playbook example
+- hosts: all
+  user: test
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Install git on all servers
+      yum: pkg=git state=latest
+    - name: list the vars directory and log it
+      raw: ls -al /var >> /home/test/dir.list
+      run_once: true
