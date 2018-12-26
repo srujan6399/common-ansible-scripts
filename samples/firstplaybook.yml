@@ -22,6 +22,8 @@
       action: yum name=telnet state=installed 
     - name: Install apache on webserver
       action: yum name=httpd state=installed
+      async: 300
+      poll: 3
       notify: Restart HTTPD
   # Handler Section
   handlers:
