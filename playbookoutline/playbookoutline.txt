@@ -1,0 +1,11 @@
+- where we perform the playbook
+- User as test
+- Provide sudo permissions
+- date/time stamp when playbook starts
+- install apche web server
+- start web service
+- Verify that the web service is running
+- Install client softwares
+    - git
+- log all the packages installed on the system
+- date/time stamp when playbook end
