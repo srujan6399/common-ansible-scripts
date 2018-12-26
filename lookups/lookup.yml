@@ -6,3 +6,4 @@
   gather_facts: no
   tasks:
     - debug: msg="Lookup the super Hero for BRUCE WAYNE {{ lookup('csvfile', 'Wayne file=lookup.csv delimiter=, col=1 default=NOMATCH')}}"
+    - debug: msg="{{ lookup('env','HOME')}} ----- is the value listed"
