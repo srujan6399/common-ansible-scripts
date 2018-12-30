@@ -14,7 +14,7 @@
     - name: Verify service status
       shell: systemctl status httpd
       register: status_result
-      until: status_result.stdout.find("active(running)") !=1
-      retries: 5
-      delay: 3
+      # until: status_result.stdout.find("active(running)") !=1
+      # retries: 5
+      # delay: 3
     - debug: var=status_result
