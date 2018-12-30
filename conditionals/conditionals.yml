@@ -1,0 +1,17 @@
+--- #conditionals playbook example
+- hosts: webserver
+  user: test
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: Install apache webserver in the webserver host group REDHAT
+      yum: 
+        pkg: httpd 
+        state: present
+      when: ansible_os_family = "RedHat"
+    - name: Install apache webserver ib the webserver host group UBUNTU
+      apt: 
+        name: apache2
+        state: present
+      when: ansible_os_family = "Debian"
