@@ -11,8 +11,8 @@
         name: httpd
         state: present
 
-    - name: Verify service status
-      shell: systemctl status httpd
+    #- name: Verify service status
+     # shell: systemctl status httpd
       #register: status_result
       # until: status_result.stdout.find("active(running)") !=1
       # retries: 5
