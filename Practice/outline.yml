@@ -23,6 +23,7 @@
   - name: Webserver Status verification
     command: systemctl status httpd
     register: output
+    become: yes
 
   - debug: var=output
 
