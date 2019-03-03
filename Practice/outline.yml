@@ -9,7 +9,7 @@
 #Tasks Section
   tasks:
   - name: Date/Time when playbook starts
-    command: /usr/bin/data
+    command: /usr/bin/date
     register: timestamp_start
 
   - debug: var=timestamp_start
