@@ -9,7 +9,10 @@
 #Tasks Section
 
 - name: Date/Time when playbook starts
-  raw: /usr/bin/data > /home/test/playbookstart.log
+  command: /usr/bin/data
+  register: timestamp_start
+
+- debug: var=timestamp_start
 
 - name: Install Apache webserver
   yum:
@@ -18,7 +21,7 @@
   notify: Restart HTTPD
 
 - name: Webserver Status verification
-  shell: service status httpd
+  command: systemctl status httpd
   register: output
 
 - debug: var=output
@@ -32,5 +35,15 @@
   raw: yum list installed > /home/test/installed.log
 
 - name: Date/Time when palybook ends
-  raw: /usr/bin/date > /home/test/palybookend.log
-  
+  command: /usr/bin/date
+  register: timestamp_end
+
+- debug: var=timestamp_end
+
+#Handler Section
+
+  handlers:
+  - name: Restart HTTPD
+    service:
+      name: httpd
+      state: restarted
