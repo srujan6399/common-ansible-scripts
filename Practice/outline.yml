@@ -7,7 +7,7 @@
   gather_facts: no
 
 #Tasks Section
-
+tasks:
 - name: Date/Time when playbook starts
   command: /usr/bin/data
   register: timestamp_start
@@ -42,8 +42,8 @@
 
 #Handler Section
 
-  handlers:
-  - name: Restart HTTPD
-    service:
-      name: httpd
-      state: restarted
+handlers:
+- name: Restart HTTPD
+  service:
+    name: httpd
+    state: restarted
