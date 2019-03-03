@@ -22,10 +22,9 @@
 
   - name: Webserver Status verification
     command: systemctl status httpd
-    register: output
-    become: yes
+    register: result
 
-  - debug: var=output
+  - debug: var=result
 
   - name: Install telnet
     yum: 
