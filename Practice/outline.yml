@@ -8,42 +8,45 @@
 
 #Tasks Section
 tasks:
-- name: Date/Time when playbook starts
-  command: /usr/bin/data
-  register: timestamp_start
+  - name: Date/Time when playbook starts
+    command: /usr/bin/data
+    register: timestamp_start
 
-- debug: var=timestamp_start
+  - debug: var=timestamp_start
 
-- name: Install Apache webserver
-  yum:
-    pkg: httpd
-    status: present
-  notify: Restart HTTPD
+  - name: Install Apache webserver
+    yum:
+      pkg: httpd
+      status: present
+    notify: Restart HTTPD
 
-- name: Webserver Status verification
-  command: systemctl status httpd
-  register: output
+  - name: Webserver Status verification
+    command: systemctl status httpd
+    register: output
 
-- debug: var=output
+  - debug: var=output
 
-- name: Install telnet
-  yum: 
-    pkg: telnet
-    state: present
+  - name: Install telnet
+    yum: 
+      pkg: telnet
+      state: present
 
-- name: Logging all packages installed on the system
-  raw: yum list installed > /home/test/installed.log
+  - name: Logging all packages installed on the system
+    command: yum list installed
+    register: installed_log
 
-- name: Date/Time when palybook ends
-  command: /usr/bin/date
-  register: timestamp_end
+  - debug: var=installed_log
 
-- debug: var=timestamp_end
+  - name: Date/Time when palybook ends
+    command: /usr/bin/date
+    register: timestamp_end
+
+  - debug: var=timestamp_end
 
 #Handler Section
 
 handlers:
-- name: Restart HTTPD
-  service:
-    name: httpd
-    state: restarted
+  - name: Restart HTTPD
+    service:
+      name: httpd
+      state: restarted
